@@ -5,8 +5,9 @@
 
 ## 2. 데이터베이스 환경 (Tech Stack)
 현재 관리 중인 환경은 On-premise 기반이며, 차세대 클라우드 전환을 위한 PoC 및 교육을 병행하고 있습니다.
-구분,상세 내용,비고
-Main RDBMS,MSSQL (2016/2019),"메인 서비스, 결제, 회원 데이터 관리"
+
+|구분|상세|내용|비고|
+Main|RDBMS|MSSQL|(2019)|"메인 서비스, 결제, 회원 데이터 관리"
 Open Source,MySQL / MariaDB,"LMS, T셀파, 쇼핑몰 등 서비스별 특화 DB"
 High Availability,MHA (MySQL High Availability),무장애 자동 Failover 체계 구축
 Monitoring,"Maxgauge, Zabbix (PoC)",실시간 지표 분석 및 알람 연동
