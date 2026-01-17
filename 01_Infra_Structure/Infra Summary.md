@@ -47,6 +47,8 @@
 
 ## 5. 핵심 관리 지표 (Operational Excellence)
 데이터 가용성: MHA(MySQL High Availability) 구성을 통한 핵심 서비스 무장애 운영 및 자동 Failover 체계 유지.
+
 복구 신뢰성: 연간 40건 이상의 DB 복원 및 최신화(LMS_TSTI, Chunjae_ACA 등)를 통해 백업 데이터의 정합성을 상시 검증.
+
 보안 준수: ISMS 보안 감사 요구사항에 따른 암호화 백업 및 접근 제어 정책 100% 이행.
 
