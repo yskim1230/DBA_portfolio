@@ -6,9 +6,13 @@
 ## 2. 데이터베이스 환경 (Tech Stack)
 현재 관리 중인 환경은 On-premise 기반이며, 차세대 클라우드 전환을 위한 PoC 및 교육을 병행하고 있습니다.
 
-|구분|상세|내용|비고|
-Main|RDBMS|MSSQL|(2019)|"메인 서비스, 결제, 회원 데이터 관리"
-Open Source,MySQL / MariaDB,"LMS, T셀파, 쇼핑몰 등 서비스별 특화 DB"
-High Availability,MHA (MySQL High Availability),무장애 자동 Failover 체계 구축
-Monitoring,"Maxgauge, Zabbix (PoC)",실시간 지표 분석 및 알람 연동
-Infrastructure,"IDC On-premise, AWS (Migration 준비)",하이브리드 환경 관리 역량 보유
+## 2. 데이터베이스 환경 (Tech Stack)
+현재 관리 중인 환경은 On-premise 기반이며, 차세대 클라우드 전환을 위한 PoC 및 교육을 병행하고 있습니다.
+
+| 구분 | 분류 | 기술 스택 | 주요 역할 및 특징 |
+| :--- | :--- | :--- | :--- |
+| **Main RDBMS** | Commercial | **MSSQL (2019)** | 메인 서비스, 결제, 회원 데이터 등 전사 핵심 데이터 관리 |
+| **Open Source** | Open Source | **MySQL / MariaDB** | LMS, T셀파, 쇼핑몰 등 서비스별 특화 데이터베이스 운영 |
+| **High Availability** | Availability | **MHA** | MySQL High Availability 기반 무장애 자동 Failover 체계 구축 |
+| **Monitoring** | Observability | **Maxgauge / Zabbix** | 실시간 지표 분석 및 SMTP 연동을 통한 선제적 장애 알람 |
+| **Infrastructure** | Hybrid | **IDC / AWS** | IDC On-premise 운영 및 AWS 마이그레이션 전략 수립(PoC) |
