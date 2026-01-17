@@ -45,7 +45,11 @@
 | DBsec 백업 | DB 접근제어 | 백업스토리지#1 | 일간(Incr) | 1,382 | 1년 | 원본 백업 | SQL Data 및 로그 |
 | Netapp 데이터 백업(1~3) | Netapp Storage | 백업스토리지#2 | 월간(Full) | 약 4,500 | 6개월 | 컴볼트 | 서비스 콘텐츠 |
 
-## 5. 핵심 관리 지표 (Operational Excellence)
+## 5. 구조도 요약
+![천재교육](https://github.com/user-attachments/assets/5a7b4dd6-e162-4bf6-8944-614745dbb88b)
+
+
+## 6. 핵심 관리 지표 (Operational Excellence)
 데이터 가용성: MHA(MySQL High Availability) 구성을 통한 핵심 서비스 무장애 운영 및 자동 Failover 체계 유지.
 
 복구 신뢰성: 연간 40건 이상의 DB 복원 및 최신화(LMS_TSTI, Chunjae_ACA 등)를 통해 백업 데이터의 정합성을 상시 검증.
