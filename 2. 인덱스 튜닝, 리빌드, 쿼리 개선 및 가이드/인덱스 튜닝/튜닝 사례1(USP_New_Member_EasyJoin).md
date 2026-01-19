@@ -26,7 +26,6 @@ DB 에서 실행되는 USP_New_Member_EasyJoin 은 USP_MemberPoint_Ins 를 실�
 최종 실행되는 USP_Schedule_MemberPoint_RP 에서 부하가 발생된다고 판단했으며, 해당 SP 실행시 과도한 연산 작업.
 <img width="1176" height="798" alt="image" src="https://github.com/user-attachments/assets/29730d97-ee7d-48ee-8b72-985a849aeeef" />
 
-<img width="1176" height="798" alt="image" src="https://github.com/user-attachments/assets/4e42dec4-b020-43dc-85e0-674387be8136" />
 
 실제 USP_Schedule_MemberPoint_RP 내에서 우려 쿼리 문장은 아래와 같습니다.
 <img width="1330" height="746" alt="image" src="https://github.com/user-attachments/assets/bd495cfe-f5b0-4770-ace7-0320b958449b" />
