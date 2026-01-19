@@ -4,7 +4,7 @@
 
 ### 발생 원인 분석 - 버전 호환 문제로 인한 쿼리 오류
 - SQL Server 2019 RTM 버전 (CU 미적용)
-- EXISTS + AND + Linked Server View 조합 시 내부 처리 방식 문제
+- EXISTS + AND + Linked Server View 조합 시 내부 처리 방식 문제 -> **해당 쿼리 실행 시 세션중단 발생**
   
   <img width="900" height="610" alt="image" src="https://github.com/user-attachments/assets/1e7296e3-a1d7-4ee1-91a6-837e04002eeb" />
   
