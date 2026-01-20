@@ -1,4 +1,4 @@
-# 튜닝 사례
+# 튜닝 사례1
 ### 개요 : 메인 db sql 서비스가 1초 정도 중단
 ### 내역 : 오류 로그에 쌓인 기록은 chunjae_pass.dbo.USP_New_Member_EasyJoin 실행 시 EXCEPTION_ACCESS_VIOLATION(메모리 접근과 관련된 문제) 오류 발생으로, 순간적인 메모리 사용량 초과(서버내 메모리 할당 기준 90% 초과)로 인해 메모리 오류가 발생한 것으로 보임
 
