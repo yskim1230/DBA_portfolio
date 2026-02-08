@@ -36,10 +36,10 @@ SHOW PLUGINS;
 SHOW VARIABLES LIKE 'validate_password%';
 ```
 
-### Non-SQL 증빙(필수)
+### 증적관련 자료
 
-* `root`/`sa` 계정 운영 정책 문서(사용 금지 or 최소화)
-* 접근제어 솔루션에서 관리자 계정 접근 통제 화면 캡처(가능 시)
+* `root`/`sa` 계정 운영 정책 문서(사용 금지 or 최소화) 작성
+* 접근제어 솔루션에서 관리자 계정 접근 통제 화면 캡처 진행
 
 ---
 
@@ -81,12 +81,12 @@ FROM mysql.user
 WHERE user = '';
 ```
 
-### Non-SQL 증빙
+### 관련 증적 자료
 
-* “계정 생성/폐기(잠금) 기준” 운영 정책 문서
-* 조치 스크립트(`apply.sql`) + 결과 캡처
+* “계정 생성/폐기(잠금) 기준” 운영 정책 문서 작성
 
 ---
+
 
 ## DB-03 패스워드 사용기간/복잡도 정책
 
@@ -114,10 +114,9 @@ SHOW VARIABLES LIKE 'default_password_lifetime'; -- MySQL
 SHOW PLUGINS;
 ```
 
-### Non-SQL 증빙
+### 관련 증적 자료
 
-* “기관 패스워드 정책” 문서 캡처(요구사항)
-* (MSSQL) Windows 계정 정책 화면 캡처(엑셀 상세에 ‘윈도우 정책 적용’ 근거가 있어 이게 제일 강함)
+* (MSSQL) Windows 계정 정책 화면 캡처
 
 ---
 
@@ -150,7 +149,7 @@ ORDER BY user, host;
 -- SHOW GRANTS FOR '@@@'@'@@@';
 ```
 
-### Non-SQL 증빙
+### 관련 증적 자료
 
 * 관리자 권한 승인/부여 프로세스(요청-승인-반영 기록)
 
@@ -179,7 +178,7 @@ SHOW VARIABLES LIKE 'validate_password%';
 SHOW VARIABLES LIKE 'password_history';     -- MySQL 8.0 계열에서 주로 등장
 ```
 
-### Non-SQL 증빙
+### 증적 자료
 
 * Windows/GPO의 “암호 기록 강제(password history)” 화면 캡처
 
@@ -209,9 +208,9 @@ FROM mysql.user
 ORDER BY user, host;
 ```
 
-### Non-SQL 증빙
+### 관련 증적 자료
 
-* 공용계정 금지/예외 기준 문서 + 예외 승인 기록(있다면)
+* 공용계정 금지/예외 기준 문서 + 예외 승인 기록(서버팀에서 관리)
 
 ---
 
@@ -224,10 +223,10 @@ ORDER BY user, host;
    DB 쿼리는 "리스닝/포트" 확인 보조 수준. */
 ```
 
-### Non-SQL 증빙(이 항목은 이게 메인)
+### 관련 증적 자료(보안팀에서 관리)
 
 * 방화벽 정책(허용 IP/포트 1433, 3306 등) 캡처
-* DB접근제어 솔루션 정책/로그 캡처(엑셀 상세 근거가 “방화벽 및 DB접근제어”임)
+* DB접근제어 솔루션 정책/로그 
 
 ---
 
@@ -258,20 +257,13 @@ ORDER BY principal_name;
 -- mysql 스키마 권한 확인은 SHOW GRANTS 기반으로 계정별 점검 권장
 -- SHOW GRANTS FOR '@@@'@'@@@';
 ```
-
-### Non-SQL 증빙
-
-* “DBA 외 메타데이터 조회 제한” 운영 정책 + 접근제어 솔루션 룰(가능 시)
-
 ---
 
-## DB-09 Oracle Listener 패스워드 (대부분 N/A)
+## DB-09 Oracle Listener 패스워드
 
-* MSSQL/MySQL/MariaDB 환경이면 **N/A 근거**가 증빙임.
+### 관련 자료 증적
 
-### Non-SQL 증빙
-
-* “Oracle 미사용” 진단 결과 캡처(엑셀 상세에 N/A 사유가 이미 있음)
+* Oracle 미사용
 
 ---
 
@@ -280,16 +272,14 @@ ORDER BY principal_name;
 ### MSSQL(보조)
 
 ```sql
-/* DB-10은 OS 레벨(드라이버/DSN) 점검이 핵심.
+/* DB-10은 OS 레벨(드라이버/DSN) 점검.
    SQL로는 완전 증빙 불가. */
 ```
 
 ### Non-SQL 증빙(메인)
 
 * Windows: ODBC Data Sources(64/32bit) 캡처
-* 사용 중 드라이버만 남겼다는 목록(정리표)
-* “업무상 필요” 예외(엑셀 상세에 ODBC 사용 근거가 있으니, 제거가 아니라 최소화/정당화 증빙도 가능)
-
+* ODBC는 별도 추가 없음
 ---
 
 ## DB-11 로그인 실패 잠금 정책
@@ -303,9 +293,7 @@ ORDER BY principal_name;
 SELECT name, is_policy_checked
 FROM sys.sql_logins;
 
--- Windows 정책 캡처가 최우선 증빙:
--- Account lockout threshold / duration / reset counter
-```
+* Active Directory(AD) 정책 공통 설정으로 Windows 서버 환경에서 사용자/컴퓨터 계정, 보안 설정, 자원 접근 권한을 중앙에서 통합 관리(서버팀)
 
 ### MySQL/MariaDB
 
@@ -321,9 +309,9 @@ ORDER BY user, host;
 -- MariaDB는 버전별 차이. 계정 잠금 정책이 OS/접근제어로 대체되는 경우 Non-SQL 증빙을 붙임.
 ```
 
-### Non-SQL 증빙
+### 관련 자료 증적
 
-* Windows 계정 잠금 정책 화면 캡처(엑셀 상세에 “임계값 3회/잠금 60분” 같은 수치가 있어 캡처가 결정타)
+* Windows 계정 잠금 정책 캡쳐
 
 ---
 
@@ -332,13 +320,12 @@ ORDER BY user, host;
 ### MySQL/MariaDB (OS 메인)
 
 ```sql
-/* DB-12는 SQL로 증빙 불가. OS에서 mysql 계정 umask 확인이 핵심 */
+/* DB-12는 SQL로 증빙 불가. OS에서 mysql 계정 umask 확인*/
 ```
 
-### Non-SQL 증빙(메인)
+### 관련 자료 증적
 
-* `su - mysql` 후 `umask` 결과 캡처
-* systemd 서비스 파일/프로필에서 umask 설정 캡처
+* `su - mysql` 후 `umask` 결과 캡처 제출
 
 ---
 
