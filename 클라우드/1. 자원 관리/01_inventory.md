@@ -1,0 +1,212 @@
+# 클라우드 DB 자원관리 인벤토리 (1년차 VPC CDB)
+
+- 작성일: 2026-02-09
+- 작성자: 김영석
+- 범위: NCP VPC 기반 CDB(MySQL) **1년차 영역** 자원 인벤토리
+- 근거 자료: `CloudDB_MySQL(VPC)_1년차 DB 리스트.xlsx`
+
+> **보안 안내**: 본 문서는 포트폴리오 공개/공유를 고려하여 내부 도메인, 계정, 비밀번호, 티켓/시스템 식별자 등 민감정보를 **마스킹**했습니다.  
+> 실제 운영 문서에는 사내 보안 정책(시크릿 매니저/권한분리/접근통제)에 따라 원본 정보를 별도 보관합니다.
+
+
+## 1. 목적
+
+- **운영/스테이징/개발** 환경별 DB 자원을 한눈에 파악하고,  
+  (1) 통합/회수 대상 선정, (2) 백업·보안·성능 정책 적용 범위, (3) 장애 대응 범위(HA/StandAlone) 를 명확히 하기 위함.
+
+## 2. 인벤토리 요약 (핵심 수치)
+
+- DB 서버(인스턴스) 수: **288대**
+- DB 서비스(서비스명 기준) 수: **167개**
+- VPC 수: **8개**
+- Subnet 수: **125개**
+- MySQL 버전 분포: **MYSQL8.0.42** 272대, **MYSQL8.4.6** 9대, **MYSQL8.0.34** 7대
+
+### 2.1 환경별 분포(서비스 기준)
+
+| ENV   |   db_servers |   db_services |
+|:------|-------------:|--------------:|
+| prd   |          197 |           100 |
+| stg   |           51 |            40 |
+| dev   |           36 |            25 |
+| etc   |            4 |             2 |
+
+### 2.2 HA 구성 현황 (Role 기준)
+
+| DB Role        |   count |
+|:---------------|--------:|
+| Master         |     118 |
+| Standby Master |     118 |
+| Stand Alone    |      49 |
+| Slave          |       2 |
+| Recovery       |       1 |
+
+> 해석 가이드  
+> - `Master + Standby Master` : **HA(이중화) 서비스**  
+> - `Stand Alone` : 단독 구성(HA 아님)  
+> - `Slave/Recovery` : 특수 목적(복제/복구)
+
+- HA 서비스(서비스명 기준): **118개**
+- Stand Alone 서비스(서비스명 기준): **49개**
+
+### 2.3 VPC별 서비스 분포(서비스 기준)
+
+| VPC             |   dev |   etc |   prd |   stg |
+|:----------------|------:|------:|------:|------:|
+| ai-dev-vpc-01   |     1 |     0 |     0 |     0 |
+| lms-comm-vpc-01 |     0 |     2 |     0 |     0 |
+| lms-dev-vpc-01  |    23 |     0 |     0 |     0 |
+| lms-prd-vpc-01  |     0 |     0 |    98 |     0 |
+| lms-stg-vpc-01  |     0 |     0 |     0 |    39 |
+| stt-dev-vpc-01  |     1 |     0 |     0 |     0 |
+| stt-prd-vpc-01  |     0 |     0 |     2 |     0 |
+| stt-stg-vpc-01  |     0 |     0 |     0 |     1 |
+
+## 3. 운영 관리 기준(Inventory 관점)
+
+### 3.1 필수로 “정리해야 하는 것”
+
+- **서비스명 표준화**: `서비스-환경-도메인-용도` 규칙으로 통일(예: `lms-prd-myd-xxx`)
+- **Role 표준화**: HA 대상은 반드시 `Master/Standby Master` 쌍으로 관리
+- **백업 보관 정책**: 운영 7일, 그 외(개발/스테이징) 3일 등 *환경별 기준*을 문서화
+- **스토리지/암호화**: 암호화 적용 여부, 스토리지 타입/용량(증설 이력 포함) 관리
+
+### 3.2 인벤토리 업데이트 루틴(권장)
+
+- 주 1회: 신규 생성/삭제/Role 변경/VPC 이동 여부 반영
+- 월 1회: 스펙(타입/스토리지) 및 백업 보관일 정책 점검(감사 대비)
+- 변경 발생 시(수시): 통합/이관/스펙다운/버전업 등 변경 이벤트를 *인벤토리*에 즉시 반영
+
+## 4. 인벤토리 샘플(발췌)
+
+> 아래 표는 “전체 167개 서비스” 중 일부만 발췌했습니다.  
+> Private/Public 도메인 등 민감정보는 별도 관리합니다.
+
+| DB 서비스 이름       | ENV   | DB Role     | VPC            | Subnet                        | DB Server 타입                | 데이터 스토리지 용량   | DB 엔진 버전   | 백업 보관일(백업시간)   |
+|:---------------------|:------|:------------|:---------------|:------------------------------|:------------------------------|:-----------------------|:---------------|:------------------------|
+| ai-dev-myd           | dev   | Stand Alone | ai-dev-vpc-01  | ai-dev-sub-prv-myd-01         | G2 - [Standard]2vCPU, 8GB Mem | 10GB                   | MYSQL8.0.42    | 7일(02:00)              |
+| lcms-dev-myd-002     | dev   | Stand Alone | lms-dev-vpc-01 | lcms-dev-sub-prv-db-01        | G2 - [Standard]2vCPU, 8GB Mem | 9GB                    | MYSQL8.0.42    | 7일(02:00)              |
+| lcms-dev-myd-01      | dev   | Master      | lms-dev-vpc-01 | lcms-dev-sub-prv-db-01        | G2 - [Standard]2vCPU, 8GB Mem | 10GB                   | MYSQL8.0.42    | 7일(02:00)              |
+| lms-dev-csb-01       | dev   | Master      | lms-dev-vpc-01 | lms-dev-sub-prv-csb-01        | G2 - [Standard]2vCPU, 8GB Mem | 9GB                    | MYSQL8.0.42    | 7일(02:00)              |
+| lms-dev-etb-01       | dev   | Master      | lms-dev-vpc-01 | lms-dev-sub-prv-myd-etb-01    | G2 - [Standard]2vCPU, 8GB Mem | 9GB                    | MYSQL8.0.42    | 1일(13:00)              |
+| lms-dev-exh-01       | dev   | Master      | lms-dev-vpc-01 | lms-dev-sub-prv-myd-exh-01    | G2 - [Standard]2vCPU, 8GB Mem | 9GB                    | MYSQL8.0.42    | 1일(01:45)              |
+| lms-dev-myd-2026-201 | dev   | Stand Alone | lms-dev-vpc-01 | lms-dev-sub-prv-myd-201       | G3 - [Standard]2vCPU, 8GB Mem | 30GB                   | MYSQL8.4.6     | 3일(00:30)              |
+| lms-dev-myd-admin-01 | dev   | Stand Alone | lms-dev-vpc-01 | lms-dev-sub-prv-myd-admin-01  | G2 - [Standard]2vCPU, 8GB Mem | 9GB                    | MYSQL8.0.42    | 1일(11:15)              |
+| lms-dev-myd-ats-01   | dev   | Stand Alone | lms-dev-vpc-01 | lms-dev-sub-prv-ats-01        | G2 - [Standard]2vCPU, 8GB Mem | 9GB                    | MYSQL8.0.42    | 3일(07:15)              |
+| lms-dev-myd-ats-test | dev   | Master      | lms-dev-vpc-01 | lms-dev-sub-prv-test-01       | G3 - [Standard]2vCPU, 8GB Mem | 3GB                    | MYSQL8.4.6     | 1일(07:30)              |
+| lms-dev-myd-eng-01   | dev   | Stand Alone | lms-dev-vpc-01 | lms-dev-sub-prv-myd-lw-01     | G3 - [Standard]2vCPU, 8GB Mem | 8GB                    | MYSQL8.0.42    | 7일(02:00)              |
+| lms-dev-myd-lm-01    | dev   | Master      | lms-dev-vpc-01 | lms-dev-sub-prv-myd-lm-01     | G2 - [Standard]2vCPU, 8GB Mem | 28GB                   | MYSQL8.0.42    | 7일(02:00)              |
+| lms-dev-myd-lm-02    | dev   | Master      | lms-dev-vpc-01 | lms-dev-sub-prv-myd-lm-02     | G2 - [Standard]2vCPU, 8GB Mem | 9GB                    | MYSQL8.0.42    | 7일(02:00)              |
+| lms-dev-myd-lw-01    | dev   | Master      | lms-dev-vpc-01 | lms-dev-sub-prv-myd-lw-01     | G2 - [Standard]2vCPU, 8GB Mem | 10GB                   | MYSQL8.0.42    | 7일(02:00)              |
+| lms-dev-myd-lw-02    | dev   | Master      | lms-dev-vpc-01 | lms-dev-sub-prv-myd-lw-02     | G2 - [Standard]2vCPU, 8GB Mem | 9GB                    | MYSQL8.0.42    | 7일(02:00)              |
+| lms-dev-myd-math-01  | dev   | Stand Alone | lms-dev-vpc-01 | lms-dev-sub-prv-myd-lm-01     | G3 - [Standard]2vCPU, 8GB Mem | 10GB                   | MYSQL8.0.42    | 7일(02:00)              |
+| mh-dev-myd-01        | dev   | Stand Alone | lms-dev-vpc-01 | mh-dev-sub-prv-db-01          | G2 - [High CPU]4vCPU, 8GB Mem | 9GB                    | MYSQL8.0.42    | 7일(02:45)              |
+| mh-dev-myd-02        | dev   | Stand Alone | lms-dev-vpc-01 | mh-dev-sub-prv-db-02          | G2 - [Standard]2vCPU, 8GB Mem | 9GB                    | MYSQL8.0.42    | 7일(02:45)              |
+| mh-dev-myd-03        | dev   | Stand Alone | lms-dev-vpc-01 | mh-dev-sub-prv-db-03          | G2 - [Standard]2vCPU, 8GB Mem | 9GB                    | MYSQL8.0.42    | 7일(03:30)              |
+| mh-dev-myd-04        | dev   | Stand Alone | lms-dev-vpc-01 | mh-dev-sub-prv-db-04          | G2 - [High CPU]4vCPU, 8GB Mem | 9GB                    | MYSQL8.0.42    | 7일(02:00)              |
+| mh-dev-myd-05        | dev   | Stand Alone | lms-dev-vpc-01 | mh-dev-sub-prv-db-05          | G2 - [High CPU]4vCPU, 8GB Mem | 9GB                    | MYSQL8.0.42    | 7일(02:00)              |
+| mh-dev-myd-06        | dev   | Stand Alone | lms-dev-vpc-01 | mh-dev-sub-prv-db-06          | G2 - [Standard]2vCPU, 8GB Mem | 9GB                    | MYSQL8.0.42    | 7일(02:00)              |
+| mh-dev-myd-07        | dev   | Stand Alone | lms-dev-vpc-01 | mh-dev-sub-prv-db-07          | G2 - [High CPU]4vCPU, 8GB Mem | 9GB                    | MYSQL8.0.42    | 7일(02:00)              |
+| portal-dev-myd-01    | dev   | Stand Alone | lms-dev-vpc-01 | lms-dev-sub-prv-myd-portal-01 | G3 - [Standard]2vCPU, 8GB Mem | 9GB                    | MYSQL8.0.42    | 7일(02:00)              |
+| stt-dev-myd-01       | dev   | Master      | stt-dev-vpc-01 | stt-dev-sub-prv-myd-01        | G2 - [Standard]2vCPU, 8GB Mem | 10GB                   | MYSQL8.0.34    | 7일(02:00)              |
+
+## 5. 산출물(증빙)
+
+- [x] `CloudDB_MySQL(VPC)_1년차 DB 리스트.xlsx` 최신화(서비스/Role/버전/백업/스토리지)
+- [x] 환경별/Role별/버전별 요약(본 문서)
+
+## Appendix. 일일 인프라 정리
+
+### 2026-01-29
+  - 2년차 운영 lms -> 통합본이라 하자
+  - 교육자료로 변경되면서 통합할 예정
+  - 통합본 으로 전환해야 하는 시기가3월 1일
+  - 2월 3주차까지 정리 작업
+  - 스펙도 줄이고, 최소스펙으로 줄이는 작업이 필요하다.
+  - 번외.문항통합플랫폼 서비스
+  - 2년차 -> 1년차로 마이그레이션 작업이 예정
+  - MYSQL 버전 업데이트 작업
+
+### 2026-01-30
+  - 오늘 목표
+  - 1. 저작도구 2년차를 1년차로 통합하는 과정 확인
+  - 2. lms 복원/복구/네이버 클라우드로 복원작업
+  - 작업 스크립트
+  - NCP Cloud DB(MySQL) 개발 DB 백업/복원 리허설 (ATS)
+  - 목적
+  - - 2년차 개발 DB(ATS) 논리 백업(mysqldump) 후 1년차 테스트 DB로 복원하고 정합성 검증 수행
+  - 테스트용 NCP 자원(VPC,Subnet). 2월28일까지만 유효
+  - VPC : lms-dev-vpc-01
+  - Subnet : lms-dev-sub-prv-test-01|KR-1|Private
+
+### 2026-02-02
+  - ---
+  - 2026-02-02 업무 파악 정리 (Cloud DBA 인수인계)
+  - 1) 오늘 이슈 배경
+  - * **AIDT 1년차(통합교육자료)** 서비스 로그인은 **Keris(통합 인증 포털)** 을 통해 유입됨.
+  - * 금요일(요청서 기준)부터 Keris 측에서 **UUID/식별자(ID) 문자 수를 늘려 전달**하기 시작.
+  - * 현업 문의 요지:
+  - * “2025년도 DB도 바뀌었는지?”
+  - * “운영에도 반영되어야 한다.”
+  - 2) 핵심 판단: DB가 관여될 가능성
+  - * DB가 관여될 수 있는 대표 케이스:
+
+### 2026-02-02
+  - 2026-02-02 (월) 업무일지 — Cloud DBA 인수인계 / AIDT Keris 로그인 이슈 대응
+  - 1) 오늘의 핵심 이슈
+  - * **AIDT 1년차(통합교육자료)** 서비스 로그인은 **Keris(통합인증 포털)** 을 통해 유입됨.
+  - * Keris 측 변경으로 **식별자(UUID/ID) 길이가 증가**하여 로그인 장애 가능성이 제기됨.
+  - * 문의 요지:
+  - * “금요일자부터 Keris 포털에서 UUID 문자 수가 늘어 들어오기 시작했다.”
+  - * “2025년도향 DB도 바뀌었는지, 운영에도 반영이 필요하다.”
+  - 2) 초기 분석 및 판단
+  - * DB가 관여될 가능성은 “있음”.
+  - * Keris ID가 사용자 매핑 키로 저장/조회되거나,
+
+### 2026-02-03
+  - 3일 업무내용
+  - 1.자원최적화 엑셀 갱신
+  - 2. exerd 갱신
+  - 작업 : exerd 1년차도 갱신필요(통합ERD.exerd)
+  - - 갱신대상 컬럼
+  - 3. 저작도구(ats) 서비스 이관 (2년차->1년차) mysql 8.0 -> 8.4
+  - --> 1년차에도 동일하게 생성예정
+  - 1년차 DB 신규생성 후 작업
+  - /*생성 작업내용*/
+  - 1. DB 생성은 민호님한테 요청
+
+### 2026-02-03
+   - ---
+  - [RUNBOOK] 클라우드 DBA 일일업무 (Day 3) — 자원/ERD 갱신 + ATS DB 이관 (MySQL 8.0 → 8.4)
+  - 0. 문서 메타
+  - * 작성일: `YYYY-MM-DD`
+  - * 작성자: `김영석`
+  - * 대상 서비스: **저작도구(ATS)**
+  - * 작업 유형: **(1) 자원 최적화 엑셀 갱신 (2) EXERD 갱신 (3) DB 이관**
+  - * 작업 범위: **2년차 → 1년차 DB 이관**, **MySQL 8.0 → 8.4**
+  - * 작업 목표
+
+### 2026-02-04
+  - 2026-02-04 클라우드 DBA 업무요약 (NCP 자원 회수/통합 이관 사전 검증)
+  - 1. 오늘 목표
+  - * **2년차 AIDT 교과목 클라우드 자원 회수 및 1년차로 통합**을 위한 사전 작업 수행
+  - * 2년차 산재 DB(교과서 단위)를 신규 통합 DB 네이밍 규칙으로 재구성하기 전, **테이블 구조(스키마)만 먼저 덤프/복원**하여
+  - * 계정/권한/접속
+  - * 덤프/복원 절차
+  - * 스키마 충돌 가능성
+  - 2. 작업 1) 로그 수집 방식/로그 파일 내역 확인
+  - * 로그 저장 경로 확인:
+  - * `/backup/DB_logs/2026stg_log/`
+
+### 2026-02-05
+  - 2026-02-05 클라우드 DBA 업무내역 (1안: 상시 통합 PoC)
+  - 0. 배경/목표
+  - * 기준안: **1년차 DB 통합안 1안(상시 통합)**
+  - * 목표: 2년차에 분산된 교과목 DB를 **1년차 신규 통합 DB 네이밍 규칙(예: `lms_lrm_eng01`)으로 상시 운영 가능한 형태로 재구성**하기 위한 사전 검증
+  - * 오늘 범위: **실데이터가 아닌 “스키마(구조) 덤프 → 통합 테스트 DB에 복구” 중심의 PoC**
+  - ---
+  - 1. 수행 작업 요약
+  - 1) 교과목군별(영어/수학) 스키마 덤프 자동화 스크립트 정리
+  - * 백업 경로 생성 및 표준화
+  - * 덤프 종료 문구(`Dump completed on`) 기반으로 **덤프 “완결성” 검증 로직 포함**
+
