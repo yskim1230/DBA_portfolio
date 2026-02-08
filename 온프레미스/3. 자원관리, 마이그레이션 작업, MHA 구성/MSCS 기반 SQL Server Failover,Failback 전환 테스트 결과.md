@@ -103,16 +103,6 @@ Windows Failover Cluster(MSCS) 환경에서 SQL Server(MSSQLSERVER)와 DTC 리�
 본 테스트를 통해 MSCS 클러스터 환경에서
 - DTC 및 SQL Server(MSSQLSERVER) Role의 **Failover/Failback 전환**이 정상 동작하고,
 - 공유 디스크 자원이 전환된 노드에서 **Online 상태를 유지**하며,
-- 전환 후에도 **DML(INSERT/SELECT/DELETE) 정상 수행**됨을 증빙하였다.
-
----
-
-# 6. 운영 관점 보완(필수)
-> 지금 상태도 “증빙”은 충분하지만, 채용 관점에서 강하게 만들려면 아래 2개가 꼭 필요합니다.
-
-1) **RTO(전환 소요시간) 기록**
-   - Failover 시작/완료, Failback 시작/완료 시각(분 단위) 타임라인 추가
-2) **서비스 관점 스모크 테스트**
-   - SSMS DML 외에, 실제 서비스 핵심 기능 1~2개(로그인/조회 등) 확인 로그 또는 캡처 추가
+- 전환 후에도 **DML(INSERT/SELECT/DELETE) 정상 수행**됨을 증빙.
 
 ---
