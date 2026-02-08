@@ -48,9 +48,11 @@ Windows Failover Cluster(MSCS) 환경에서 SQL Server(MSSQLSERVER)와 DTC 리�
 
 **Evidence**
 - Role Owner(전환 전): `cjdb01p`  
-  ![Role Owner - Before](./evidence/01_role_owner_before.png)
+<img width="602" height="103" alt="1" src="https://github.com/user-attachments/assets/25556063-d229-4061-99fa-2a1436e1e603" />
+
 - Disk Owner/Online(전환 전): `cjdb01p`  
-  ![Disk Owner - Before](./evidence/02_disk_owner_before.png)
+<img width="816" height="162" alt="2" src="https://github.com/user-attachments/assets/a56d5f7d-59cc-4f1c-a99e-b270c66836f5" />
+
 
 ---
 
@@ -60,9 +62,11 @@ Windows Failover Cluster(MSCS) 환경에서 SQL Server(MSSQLSERVER)와 DTC 리�
 
 **Evidence**
 - Role Owner(FAILOVER 후): `cjdb02p`  
-  ![Role Owner - After Failover](./evidence/03_role_owner_after_failover.png)
+<img width="615" height="127" alt="3" src="https://github.com/user-attachments/assets/7a10d97f-379c-435c-aa5c-8ab9777716a5" />
+
 - Disk Owner/Online(FAILOVER 후): `cjdb02p`  
-  ![Disk Owner - After Failover](./evidence/06_disk_owner_after_failover.png)
+<img width="837" height="208" alt="6" src="https://github.com/user-attachments/assets/4e648738-1f6f-4c00-abe8-4853c45d7d08" />
+  
 
 ---
 
