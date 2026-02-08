@@ -92,9 +92,10 @@ Windows Failover Cluster(MSCS) 환경에서 SQL Server(MSSQLSERVER)와 DTC 리�
 
 **Evidence**
 - Role Owner(FAILBACK 후): `cjdb01p`  
-  ![Role Owner - After Failback](./evidence/07_role_owner_after_failback.png)
+<img width="667" height="170" alt="7" src="https://github.com/user-attachments/assets/3c9c0057-f229-4c15-8523-d0b27522e7c9" />
+
 - (cjdb01p) DML 테스트 성공  
-  ![DML on cjdb01p](./evidence/08_dml_on_cjdb01p.png)
+<img width="583" height="547" alt="8" src="https://github.com/user-attachments/assets/a05d95af-0a84-497e-a572-2dda647783c0" />
 
 ---
 
