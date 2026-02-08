@@ -180,7 +180,7 @@ SHOW VARIABLES LIKE 'password_history';     -- MySQL 8.0 계열에서 주로 등
 
 ### 증적 자료
 
-* Windows/GPO의 “암호 기록 강제(password history)” 화면 캡처
+* Windows/GPO의 암호 기록(password history) 화면 캡처
 
 ---
 
@@ -276,7 +276,7 @@ ORDER BY principal_name;
    SQL로는 완전 증빙 불가. */
 ```
 
-### Non-SQL 증빙(메인)
+### 관련 자료 증적
 
 * Windows: ODBC Data Sources(64/32bit) 캡처
 * ODBC는 별도 추가 없음
@@ -334,7 +334,7 @@ ORDER BY user, host;
 ### MSSQL(Windows)
 
 ```sql
-/* DB-13 (MSSQL) DB 파일/설정파일 ACL은 OS 증빙이 메인 */
+/* DB-13 (MSSQL) DB 파일/설정파일 ACL은 OS 증빙 */
 ```
 
 ### MySQL/MariaDB
@@ -343,7 +343,7 @@ ORDER BY user, host;
 /* DB-13은 my.cnf, datadir, keyfile 등의 퍼미션/소유자 확인이 핵심 (OS 메인) */
 ```
 
-### Non-SQL 증빙(메인)
+### 관련 자료 증적
 
 * Windows: DB 데이터/로그 디렉토리 ACL에서 Everyone 없음 캡처(엑셀 상세 근거)
 * Linux: `ls -al /etc/my.cnf /etc/mysql/* /var/lib/mysql ...` 캡처
@@ -352,7 +352,7 @@ ORDER BY user, host;
 
 ## DB-14 Oracle Listener 로그/trace 변경권한 제한 (대부분 N/A)
 
-* Oracle 미사용이면 N/A 근거로 처리.
+* Oracle 미사용, N/A 처리.
 
 ---
 
@@ -380,16 +380,14 @@ ORDER BY pe.permission_name;
 ### MySQL/MariaDB
 
 ```sql
-/* DB-15 (MySQL/MariaDB) '모두에게 열려있는' 권한은 존재 구조가 다름.
-   핵심은 계정별 최소권한 + '%' 호스트 최소화 */
 SELECT user, host
 FROM mysql.user
 ORDER BY user, host;
 ```
 
-### Non-SQL 증빙
+### 관련 자료 증적
 
-* Role 설계/권한 승인 프로세스 문서(있으면 강함)
+* Role 설계/권한 승인 프로세스 문서
 
 ---
 
@@ -400,8 +398,6 @@ ORDER BY user, host;
 ---
 
 ## DB-17 패스워드 확인함수/정책 적용
-
-엑셀 상세에서 MSSQL은 “윈도우 정책 적용” 근거가 반복됨. 즉 **OS 정책 증빙이 핵심**.
 
 ### MSSQL
 
@@ -425,21 +421,18 @@ SHOW PLUGINS;
 
 ---
 
-## DB-18 인가되지 않은 Object Owner 제한 (Oracle/일부 DBMS 전용, 대개 N/A)
+## DB-18 인가되지 않은 Object Owner 제한 (Oracle/일부 DBMS 전용)
 
-* MSSQL은 N/A로 적혀있음(엑셀 상세).
-* MySQL/MariaDB에서도 “Owner” 개념이 Oracle과 달라서 대부분 N/A/대체통제로 설명.
+* MSSQL은 관련 없음
+* MySQL/MariaDB에서도 Owner 개념이 Oracle과 달라서 대부분 통과
 
 ### 대체통제(증빙 아이디어)
 
-* “스키마/오브젝트 생성 권한은 DBA/배포계정만” 정책
-* 배포계정의 권한(DDL 권한) 증빙
+* 배포계정의 권한(DDL 권한) 증빙 제출
 
 ---
 
 ## DB-19 GRANT OPTION 제한 (Oracle 중심, MSSQL은 N/A)
-
-MySQL/MariaDB는 `WITH GRANT OPTION` 존재하므로 **실제로 점검 가능**.
 
 ### MySQL/MariaDB
 
@@ -455,29 +448,13 @@ FROM information_schema.user_privileges
 ORDER BY grantee, privilege_type;
 ```
 
-### Non-SQL 증빙
+### 관련 자료 증적
 
-* “권한 부여 시 GRANT OPTION 금지” 기준 문서
-
----
-
-## DB-20 자원 제한 기능 TRUE (Oracle resource_limit 류, 대부분 N/A)
-
-* MSSQL N/A, MySQL/MariaDB도 동일 개념이 다르므로 N/A/대체통제로 처리하는 경우 많음.
-
-### 대체통제(추천)
-
-* 커넥션 제한(max_connections), 계정별 리소스 제한(가능 시) 점검
-
-```sql
-SHOW VARIABLES LIKE 'max_connections';
--- MySQL 계정별 리소스 제한(사용 시)
--- SELECT user, host, max_questions, max_updates, max_connections, max_user_connections FROM mysql.user;
-```
+* 권한 부여 시 GRANT OPTION 금지
 
 ---
 
-## DB-21 최신 보안패치/벤더 권고 적용
+## DB-20 최신 보안패치/벤더 권고 적용
 
 ### MSSQL
 
@@ -486,7 +463,6 @@ SHOW VARIABLES LIKE 'max_connections';
 
 SELECT @@VERSION AS sqlserver_version;
 
--- 빌드번호 기반으로 CU 적용 여부는 릴리즈 노트/내부 패치 기록(Non-SQL)로 증빙하는 게 정확함.
 ```
 
 ### MySQL/MariaDB
@@ -494,21 +470,15 @@ SELECT @@VERSION AS sqlserver_version;
 ```sql
 /* DB-21 (MySQL/MariaDB) 버전 확인 */
 SELECT VERSION() AS version;
-
--- 패치/업그레이드 이력은 운영 변경관리 문서/릴리즈 노트(Non-SQL)로 증빙 권장
 ```
 
-### Non-SQL 증빙(이 항목은 이게 메인)
+### 관련 자료 증적
 
 * 패치 적용 변경관리 티켓/승인 기록
 * 적용 전/후 버전 캡처
-* 테스트 후 적용했다는 근거(릴리즈 검증 체크리스트)
-
 ---
 
-## DB-22 접근/변경/삭제 감사기록 정책 적합 설정
-
-엑셀 상세에서 “DB접근제어를 통해 접속 로그 저장”이 근거로 등장함 → **솔루션 로그가 메인**.
+## DB-21 접근/변경/삭제 감사기록 정책 적합 설정
 
 ### MSSQL(보조: 자체 Audit 사용 시)
 
@@ -530,53 +500,9 @@ SHOW PLUGINS;
 -- audit_log 플러그인 변수는 환경별 상이
 ```
 
-### Non-SQL 증빙(메인)
+### 관련 자료 증적
 
-* 접근제어 솔루션에서 “접속/쿼리/변경” 로그 보관 화면 캡처
-* 로그 보관주기/권한통제 정책 문서
-
----
-
-## DB-23 보안에 취약하지 않은 버전 사용(버전 적정성)
-
-### 공통
-
-```sql
-SELECT VERSION();
-```
-
-### Non-SQL 증빙(메인)
-
-* “지원되는 버전인지(EOL 여부)” 내부 기준표(벤더 지원 정책 캡처/사내 기준)
-* 업그레이드 로드맵(취약으로 남아있으면 예외 승인 + 보완통제)
-
----
-
-## DB-24 Audit Table 접근을 DBA로 제한
-
-엑셀 상세에서 MSSQL은 N/A로 나오는 케이스도 있음(환경에 따라 감사테이블 자체가 없을 수 있음).
-반대로 MySQL/MariaDB에서 Audit 로그를 테이블로 보관하면 **권한 통제 증빙 가능**.
-
-### MSSQL(사용 시)
-
-```sql
-/* DB-24 (MSSQL) 감사 로그/테이블(또는 Audit 파일) 접근 통제는 OS/권한이 메인.
-   DB 내에서 확인 가능한 경우만 점검. */
--- 예: 특정 감사 DB/스키마의 SELECT 권한이 DBA에만 있는지 확인
-```
-
-### MySQL/MariaDB
-
-```sql
-/* DB-24 (MySQL/MariaDB) 감사 테이블(있다면) 접근권한 확인 */
--- 예: audit 스키마 테이블 권한 확인
--- SHOW GRANTS FOR '@@@'@'@@@';
-```
-
-### Non-SQL 증빙(메인)
-
-* 감사 로그 파일/테이블 위치
-* 접근 권한(ACL) 캡처
-* DBA 계정만 접근 가능하다는 근거(권한 화면)
+* 접근제어 솔루션에서 접속/쿼리/변경 로그 보관 화면 캡처 제출
+* 로그 보관주기/권한통제 정책 문서 제출
 
 ---
