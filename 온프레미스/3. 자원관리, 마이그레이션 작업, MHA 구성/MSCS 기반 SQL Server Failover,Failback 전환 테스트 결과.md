@@ -79,9 +79,10 @@ Windows Failover Cluster(MSCS) 환경에서 SQL Server(MSSQLSERVER)와 DTC 리�
 
 **Evidence**
 - (cjdb02p) 서비스 실행 상태  
-  ![Services on cjdb02p](./evidence/04_services_on_cjdb02p.png)
+<img width="680" height="318" alt="4" src="https://github.com/user-attachments/assets/d2b6dc48-ea33-4d43-8d09-1bc944ff9447" />
+
 - (cjdb02p) DML 테스트 성공  
-  ![DML on cjdb02p](./evidence/05_dml_on_cjdb02p.png)
+<img width="562" height="510" alt="5" src="https://github.com/user-attachments/assets/22827556-f4ef-4c8f-a83f-2f3f929c6ad3" />
 
 ---
 
