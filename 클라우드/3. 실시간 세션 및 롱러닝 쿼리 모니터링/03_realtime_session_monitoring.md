@@ -19,6 +19,13 @@
 3. 접근통제와 감사 관점에 유리한 수집 체계
    DB 서버 OS에 직접 접속하지 않고 NCP 공식 Export to Object Storage 기능 기반으로 로그를 수집해 운영 감사 증적에 유리한 흐름을 갖춘다.
 
+### 1.3 수집 범위 및 보관 정책(정량)
+- 수집 대상: NCP Cloud DB for MySQL 인스턴스/엔드포인트 52대(환경별 분리 운영)
+- 실시간 세션(Active Session) 로그: 작업서버 로컬에 .log로 적재, 보관 1개월(rolling 정책 적용)
+- Slow/Error 원본 로그: Object Storage로 Export 후 작업서버로 다운로드하여 raw 로그 보관 1개월
+- 요약 리포트: mysqldumpslow 기반 일일 요약 리포트 산출, 작업서버에 .log 형태로 누적 보관
+- 백업 보관: 7일(운영 정책 기준)
+- 용량 관리: find -mtime 기반 자동 삭제로 디스크 풀 방지(예: raw/summary 각각 30일 유지)
 ---
 
 ## 2. 전체 아키텍처 개요
