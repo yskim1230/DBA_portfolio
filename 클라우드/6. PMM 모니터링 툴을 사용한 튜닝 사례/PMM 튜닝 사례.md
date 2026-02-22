@@ -6,13 +6,16 @@
 * 1주일 관측치 기준 단건 지연은 매우 짧지만(마이크로초 단위) 총 호출량이 크므로 작은 비효율도 누적 비용으로 전환되는 유형
 
 ### 1주일 지표(PMM Query Analytics)
-
+```
 Metric: Query Count (sum) 6.85M
 Metric: QPS 11.32
 Metric: Count share 13.94%
 Metric: Avg latency 203.60 us
 Metric: Total time 0:23:14
 Metric: Time share 2.17%
+```
+<img width="1880" height="959" alt="0  문제은행 과도한 호출쿼리 내역 확인(1주일통계)" src="https://github.com/user-attachments/assets/3aa1dfa8-f4ca-42f4-9ef0-cf70a0912b83" />
+
 
 ## 2. AS-IS 쿼리 및 문제점
 
@@ -35,12 +38,18 @@ WHERE l.goods_seq = '189663'
 GROUP BY l.category_link_seq;
 ```
 
+<img width="1943" height="487" alt="1  개선전 explain" src="https://github.com/user-attachments/assets/3eecfd31-0d94-4c2d-a670-5911b3d1683e" />
+
+
+
 ### 문제 인식
 
 * 실행계획 Extra에 Using temporary, Using filesort 발생
   GROUP BY로 인한 임시테이블과 정렬은 고빈도 쿼리에서 누적 CPU 비용으로 이어질 수 있음
 * fm_provider는 SELECT 결과에 사용되지 않는 중간 조인으로 조인 단순화 여지가 있음
 * fm_provider_charge는 조인 조건이 provider_seq와 category_code의 복합 조건인데 단일 인덱스만 사용될 가능성이 있어 향후 데이터 증가 시 리스크가 될 수 있음
+
+
 
 ## 3. 개선 방향 및 TO-BE 적용(즉시 적용 범위)
 
@@ -49,6 +58,17 @@ GROUP BY l.category_link_seq;
 1. 불필요한 GROUP BY 제거로 임시테이블 및 파일소트 제거
 2. 불필요한 중간 조인 제거로 조인 단계 축소
 3. 인덱스 최적화는 데이터 크기와 분포에 따라 단계적으로 적용하며 현 상태에서는 보류 가능
+
+
+### 적용전 데이터 정합성 확인
+
+[Group by 제거 전 데이터 단일성 확인]
+<img width="534" height="118" alt="2  개선 전 category_link_seq 중복확인" src="https://github.com/user-attachments/assets/63ace8ff-bf9b-4026-bc9c-07aa00d3bb26" />
+
+<img width="522" height="90" alt="3  개선 전 provider_charge가 provider+category 조합당 다건인지 확인" src="https://github.com/user-attachments/assets/aa1afd44-973f-4880-93b3-6ebe14cdbb88" />
+
+
+
 
 ### TO-BE 쿼리
 
@@ -70,6 +90,10 @@ LEFT JOIN fm_provider_charge d
 WHERE l.goods_seq = 189663;
 ```
 
+<img width="1859" height="387" alt="4  개선 후 쿼리 explain" src="https://github.com/user-attachments/assets/82dada8a-132c-4ec6-b4dd-1873e504ff9c" />
+
+
+
 ## 4. 적용 결과(실행계획 관점)
 
 * Using temporary 및 Using filesort 제거 확인
@@ -85,6 +109,9 @@ WHERE l.goods_seq = 189663;
 * Row 수 491
 * 인덱스 PRIMARY(charge_seq), provider_seq(단일), link(단일)
 * provider_seq의 Cardinality가 rows에 근접(약 482/491)하여 현 시점 분포에서는 단일 인덱스만으로도 후보 row가 거의 1건 수준으로 좁혀질 가능성이 높음
+
+<img width="1405" height="534" alt="5  fm_provider_charge 테이블 상태 확인(이 근거로 인덱스 추가는 보류)" src="https://github.com/user-attachments/assets/fab2a41a-a71e-46b6-9d87-b15a46eade6b" />
+
 
 ### 결론
 
