@@ -27,9 +27,9 @@
 
 #### 작업서버 VMS
 [cron]
-- 실시간 샘플링 스크립트 main_active_3s.sh, active_3s.sh
-- 로그 수집 스크립트 db_log.sh, db_prd_log.sh, 2026_stg_log.sh
-- 로그 가공 스크립트 slow_sort.sh
+- 실시간 샘플링 스크립트: main_active_3s.sh, active_3s.sh
+- 로그 수집 스크립트: db_log.sh, db_prd_log.sh, 2026_stg_log.sh
+- 로그 가공 스크립트: slow_sort.sh
 
 [Object Storage]
 - 로컬 파일 시스템 분석 디렉토리
