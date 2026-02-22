@@ -62,8 +62,11 @@ GROUP BY l.category_link_seq;
 
 ### 적용전 데이터 정합성 확인
 
-[Group by 제거 전 데이터 단일성 확인]
+
+#### [Group by 제거 전 데이터 단일성 확인]
+
 <img width="534" height="118" alt="2  개선 전 category_link_seq 중복확인" src="https://github.com/user-attachments/assets/63ace8ff-bf9b-4026-bc9c-07aa00d3bb26" />
+
 
 <img width="522" height="90" alt="3  개선 전 provider_charge가 provider+category 조합당 다건인지 확인" src="https://github.com/user-attachments/assets/aa1afd44-973f-4880-93b3-6ebe14cdbb88" />
 
