@@ -39,18 +39,28 @@
 #### 실시간 Active Session
 
 [cron 매분 트리거]
+
 -> main_active_3s.sh
+
 -> 3초 간격 3부터 57까지 active_3s.sh 호출
+
 -> 각 인스턴스 processlist 수집
+
 -> 로컬 디렉토리에 시간축 로그 적재
 
 [Slow Error 로그]
 Cloud DB Instances
+
 -> NCP CLI exportDbServerLogToObjectStorage logType SLOW, ERROR
+
 -> Object Storage 환경별 prefix
+
 -> VMS list objects, download
+
 -> 로컬 디렉토리에 raw 로그 적재
+
 -> slow_sort.sh 병합 및 mysqldumpslow 요약
+
 -> 일일 리포트 산출
 
 ---
