@@ -38,15 +38,17 @@ IDC 기반 운영 환경에서 MSSQL과 서비스별 MySQL MariaDB를 운영하�
 [tuning-ex]: https://github.com/yskim1230/DBA_portfolio/tree/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/2.%20%EC%9D%B8%EB%8D%B1%EC%8A%A4%20%ED%8A%9C%EB%8B%9D%2C%20%EB%A6%AC%EB%B9%8C%EB%93%9C%2C%20%EC%BF%BC%EB%A6%AC%20%EA%B0%9C%EC%84%A0%20%EB%B0%8F%20%EA%B0%80%EC%9D%B4%EB%93%9C
 
 3) 마이그레이션, 자동화, MHA 구성 및 운영
+- [자원관리,MHA][resource-mha]
+[resource-mha]: https://github.com/yskim1230/DBA_portfolio/tree/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/3.%20%EC%9E%90%EC%9B%90%EA%B4%80%EB%A6%AC%2C%20%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98%20%EC%9E%91%EC%97%85%2C%20MHA%20%EA%B5%AC%EC%84%B1
+
+
+3) ISMS 대비 보안 취약점 대비 작업
 - 
 
-4) ISMS 대비 보안 취약점 대비 작업
+4) 문자 서비스 벤더 변환 작업
 - 
 
-5) 문자 서비스 벤더 변환 작업
-- 
-
-6) HA,DR(장애조치Failover) Runbook
+5) HA,DR(장애조치Failover) Runbook
 - 
 
 
