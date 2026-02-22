@@ -59,26 +59,25 @@
 
 | 학교급(현재)   | 교과서(현재)   | 저자(현재)   | 접속정보(현재)       | DB명(현재)        | 교과서(변경)   | 접속정보(변경)                   | DB명(변경)                                       |
 |:---------------|:---------------|:-------------|:---------------------|:------------------|:---------------|:---------------------------------|:-------------------------------------------------|
-| 초등           | 영어 3         | 이동환       | <CDB_PRIVATE_DOMAIN> | lms_lrm / lms_cms | 영어 3         | 영어통합…<CDB_DOMAIN> | lms_lrm_eng01 / lms_cms_eng01 / lms_lrw_eng01    |
-| 초등           | 영어 4         | 이동환       | <CDB_PRIVATE_DOMAIN> |                   | 영어 4         |                                  | lms_lrm_eng02 / lms_cms_eng02 / lms_lrw_eng02    |
-| 초등           | 영어 3         | 김태은       | <CDB_PRIVATE_DOMAIN> |                   | 영어 3         |                                  | lms_lrm_eng03 / lms_cms_eng03 / lms_lrw_eng03    |
-| 초등           | 영어 4         | 김태은       | <CDB_PRIVATE_DOMAIN> |                   | 영어 4         |                                  | lms_lrm_eng04 / lms_cms_eng04 / lms_lrw_eng04    |
-| 초등           | 영어 3         | 함순애       | <CDB_PRIVATE_DOMAIN> |                   | 영어 3         |                                  | lms_lrm_eng05 / lms_cms_eng05 / lms_lrw_eng05    |
-| 초등           | 영어 4         | 함순애       | <CDB_PRIVATE_DOMAIN> |                   | 영어 4         |                                  | lms_lrm_eng06 / lms_cms_eng06 / lms_lrw_eng06    |
-| 중학           | 영어           | 이상기       | <CDB_PRIVATE_DOMAIN> |                   | 영어           |                                  | lms_lrm_eng07 / lms_cms_eng07 / lms_lrw_eng07    |
-| 중학           | 영어           | 소영순       | <CDB_PRIVATE_DOMAIN> |                   | 영어           |                                  | lms_lrm_eng08 / lms_cms_eng08 / lms_lrw_eng08    |
-| 고등           | 공통영어 1     | 강상구       | <CDB_PRIVATE_DOMAIN> |                   | 공통영어 1     |                                  | lms_lrm_eng09 / lms_cms_eng09 / lms_lrw_eng09    |
-| 고등           | 공통영어 2     | 강상구       | <CDB_PRIVATE_DOMAIN> |                   | 공통영어 2     |                                  | lms_lrm_eng10 / lms_cms_eng10 / lms_lrw_eng10    |
-| 고등           | 공통영어 1     | 조수경       | <CDB_PRIVATE_DOMAIN> |                   | 공통영어 1     |                                  | lms_lrm_eng11 / lms_cms_eng11 / lms_lrw_eng11    |
-| 고등           | 공통영어 2     | 조수경       | <CDB_PRIVATE_DOMAIN> |                   | 공통영어 2     |                                  | lms_lrm_eng12 / lms_cms_eng12 / lms_lrw_eng12    |
-| 초등           | 수학 3-1       | 박만구       | <CDB_PRIVATE_DOMAIN> |                   | 수학 3-1       | 수학통합…<CDB_DOMAIN> | lms_lrm_math01 / lms_cms_math01 / lms_lrw_math01 |
-| 초등           | 수학 3-2       | 박만구       | <CDB_PRIVATE_DOMAIN> |                   | 수학 3-2       |                                  | lms_lrm_math02 / lms_cms_math02 / lms_lrw_math02 |
-| 초등           | 수학 4-1       | 박만구       | <CDB_PRIVATE_DOMAIN> |                   | 수학 4-1       |                                  | lms_lrm_math03 / lms_cms_math03 / lms_lrw_math03 |
-| 초등           | 수학 4-2       | 박만구       | <CDB_PRIVATE_DOMAIN> |                   | 수학 4-2       |                                  | lms_lrm_math04 / lms_cms_math04 / lms_lrw_math04 |
-| 초등           | 수학 3-1       | 한대희       | <CDB_PRIVATE_DOMAIN> |                   | 수학 3-1       |                                  | lms_lrm_math05 / lms_cms_math05 / lms_lrw_math05 |
-| 초등           | 수학 3-2       | 한대희       | <CDB_PRIVATE_DOMAIN> |                   | 수학 3-2       |                                  | lms_lrm_math06 / lms_cms_math06 / lms_lrw_math06 |
+| 초등           | 영어 3         | 이xx       | <CDB_PRIVATE_DOMAIN> | lms_lrm / lms_cms | 영어 3         | 영어통합…<CDB_DOMAIN> | lms_lrm_eng01 / lms_cms_eng01 / lms_lrw_eng01    |
+| 초등           | 영어 4         | 이xx       | <CDB_PRIVATE_DOMAIN> |                   | 영어 4         |                                  | lms_lrm_eng02 / lms_cms_eng02 / lms_lrw_eng02    |
+| 초등           | 영어 3         | 김xx       | <CDB_PRIVATE_DOMAIN> |                   | 영어 3         |                                  | lms_lrm_eng03 / lms_cms_eng03 / lms_lrw_eng03    |
+| 초등           | 영어 4         | 김xx       | <CDB_PRIVATE_DOMAIN> |                   | 영어 4         |                                  | lms_lrm_eng04 / lms_cms_eng04 / lms_lrw_eng04    |
+| 초등           | 영어 3         | 함xx       | <CDB_PRIVATE_DOMAIN> |                   | 영어 3         |                                  | lms_lrm_eng05 / lms_cms_eng05 / lms_lrw_eng05    |
+| 초등           | 영어 4         | 함xx       | <CDB_PRIVATE_DOMAIN> |                   | 영어 4         |                                  | lms_lrm_eng06 / lms_cms_eng06 / lms_lrw_eng06    |
+| 중학           | 영어           | 이xx       | <CDB_PRIVATE_DOMAIN> |                   | 영어           |                                  | lms_lrm_eng07 / lms_cms_eng07 / lms_lrw_eng07    |
+| 중학           | 영어           | 소xx       | <CDB_PRIVATE_DOMAIN> |                   | 영어           |                                  | lms_lrm_eng08 / lms_cms_eng08 / lms_lrw_eng08    |
+| 고등           | 공통영어 1     | 강xx       | <CDB_PRIVATE_DOMAIN> |                   | 공통영어 1     |                                  | lms_lrm_eng09 / lms_cms_eng09 / lms_lrw_eng09    |
+| 고등           | 공통영어 2     | 강xx       | <CDB_PRIVATE_DOMAIN> |                   | 공통영어 2     |                                  | lms_lrm_eng10 / lms_cms_eng10 / lms_lrw_eng10    |
+| 고등           | 공통영어 1     | 조xx       | <CDB_PRIVATE_DOMAIN> |                   | 공통영어 1     |                                  | lms_lrm_eng11 / lms_cms_eng11 / lms_lrw_eng11    |
+| 고등           | 공통영어 2     | 조xx       | <CDB_PRIVATE_DOMAIN> |                   | 공통영어 2     |                                  | lms_lrm_eng12 / lms_cms_eng12 / lms_lrw_eng12    |
+| 초등           | 수학 3-1       | 박xx       | <CDB_PRIVATE_DOMAIN> |                   | 수학 3-1       | 수학통합…<CDB_DOMAIN> | lms_lrm_math01 / lms_cms_math01 / lms_lrw_math01 |
+| 초등           | 수학 3-2       | 박xx       | <CDB_PRIVATE_DOMAIN> |                   | 수학 3-2       |                                  | lms_lrm_math02 / lms_cms_math02 / lms_lrw_math02 |
+| 초등           | 수학 4-1       | 박xx       | <CDB_PRIVATE_DOMAIN> |                   | 수학 4-1       |                                  | lms_lrm_math03 / lms_cms_math03 / lms_lrw_math03 |
+| 초등           | 수학 4-2       | 박xx       | <CDB_PRIVATE_DOMAIN> |                   | 수학 4-2       |                                  | lms_lrm_math04 / lms_cms_math04 / lms_lrw_math04 |
+| 초등           | 수학 3-1       | 한xx       | <CDB_PRIVATE_DOMAIN> |                   | 수학 3-1       |                                  | lms_lrm_math05 / lms_cms_math05 / lms_lrw_math05 |
+| 초등           | 수학 3-2       | 한xx       | <CDB_PRIVATE_DOMAIN> |                   | 수학 3-2       |                                  | lms_lrm_math06 / lms_cms_math06 / lms_lrw_math06 |
 
-> 참고: 실제 엑셀에는 교과목군(영어/수학 등) 전체 매핑이 포함되어 있으며,  
 > 본 문서에는 발췌본만 포함했습니다.
 
 - 정합성 확인
