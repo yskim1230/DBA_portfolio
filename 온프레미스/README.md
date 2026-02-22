@@ -34,6 +34,7 @@ IDC 기반 운영 환경에서 MSSQL과 서비스별 MySQL MariaDB를 운영하�
 
 2) 성능 운영 최적화 튜닝 리빌드
 - [튜닝사례][tuning-ex]
+  
 [tuning-ex]: https://github.com/yskim1230/DBA_portfolio/tree/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/2.%20%EC%9D%B8%EB%8D%B1%EC%8A%A4%20%ED%8A%9C%EB%8B%9D%2C%20%EB%A6%AC%EB%B9%8C%EB%93%9C%2C%20%EC%BF%BC%EB%A6%AC%20%EA%B0%9C%EC%84%A0%20%EB%B0%8F%20%EA%B0%80%EC%9D%B4%EB%93%9C
 
 3) 마이그레이션, 자동화, MHA 구성 및 운영
