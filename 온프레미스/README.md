@@ -39,6 +39,7 @@ IDC 기반 운영 환경에서 MSSQL과 서비스별 MySQL MariaDB를 운영하�
 
 3) 마이그레이션, 자동화, MHA 구성 및 운영
 - [자원관리,MHA][resource-mha]
+  
 [resource-mha]: https://github.com/yskim1230/DBA_portfolio/tree/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/3.%20%EC%9E%90%EC%9B%90%EA%B4%80%EB%A6%AC%2C%20%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98%20%EC%9E%91%EC%97%85%2C%20MHA%20%EA%B5%AC%EC%84%B1
 
 
