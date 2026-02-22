@@ -22,7 +22,16 @@ IDC 기반 운영 환경에서 MSSQL과 서비스별 MySQL MariaDB를 운영하�
 
 ## 4. 목차
 1) 인프라 구조
-- [인프라요약]([https://github.com/yskim1230/DBA_portfolio/blob/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/2.%20%EC%9D%B8%EB%8D%B1%EC%8A%A4%20%ED%8A%9C%EB%8B%9D%2C%20%EB%A6%AC%EB%B9%8C%EB%93%9C%2C%20%EC%BF%BC%EB%A6%AC%20%EA%B0%9C%EC%84%A0%20%EB%B0%8F%20%EA%B0%80%EC%9D%B4%EB%93%9C/%EC%9D%B8%EB%8D%B1%EC%8A%A4%EB%A6%AC%EB%B9%8C%EB%93%9C.md](https://github.com/yskim1230/DBA_portfolio/blob/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/1.%20%EC%9D%B8%ED%94%84%EB%9D%BC%20%EA%B5%AC%EC%A1%B0/Infra%20Summary.md))
+## 1. 인프라 구조
+- [인프라요약][infra-summary]
+- [MariaDB-문제은행][mariadb-qbank]
+- [SQL서버 - 천재교육메인][mssql-main]
+- [Mysql-쇼핑몰][mysql-shop]
+
+[infra-summary]: https://github.com/yskim1230/DBA_portfolio/blob/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/1.%20%EC%9D%B8%ED%94%84%EB%9D%BC%20%EA%B5%AC%EC%A1%B0/Infra%20Summary.md
+[mariadb-qbank]: https://github.com/yskim1230/DBA_portfolio/blob/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/1.%20%EC%9D%B8%ED%94%84%EB%9D%BC%20%EA%B5%AC%EC%A1%B0/%EB%AC%B8%EC%A0%9C%EC%9D%80%ED%96%89%20MariaDB.md
+[mssql-main]: https://github.com/yskim1230/DBA_portfolio/blob/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/1.%20%EC%9D%B8%ED%94%84%EB%9D%BC%20%EA%B5%AC%EC%A1%B0/%EC%B2%9C%EC%9E%AC%EA%B5%90%EC%9C%A1%20%EB%A9%94%EC%9D%B8%20MSSQL.md
+[mysql-shop]: https://github.com/yskim1230/DBA_portfolio/blob/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/1.%20%EC%9D%B8%ED%94%84%EB%9D%BC%20%EA%B5%AC%EC%A1%B0/%ED%8B%B0%EC%85%80%ED%8C%8C%20%EC%87%BC%ED%95%91%EB%AA%B0%20Mysql.md
 
 2) 고가용성 HA 장애 대응
 - ./02_HA_장애대응/
