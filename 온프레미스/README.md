@@ -10,7 +10,7 @@ IDC 기반 운영 환경에서 MSSQL과 서비스별 MySQL MariaDB를 운영하�
 3) HA 장애 대응 런북 MHA 포함
 4) 보안 감사 ISMS 증적
 5) 성능 튜닝 실행계획 인덱스 전략
-6) 모니터링 관측 MaxGauge PMM 알람
+
 
 ## 3. 대표사례
 - [SQL서버-마이그레이션](https://github.com/yskim1230/DBA_portfolio/blob/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/3.%20%EC%9E%90%EC%9B%90%EA%B4%80%EB%A6%AC%2C%20%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98%20%EC%9E%91%EC%97%85%2C%20MHA%20%EA%B5%AC%EC%84%B1/SQL%EC%84%9C%EB%B2%84%20%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98.md)
@@ -44,7 +44,9 @@ IDC 기반 운영 환경에서 MSSQL과 서비스별 MySQL MariaDB를 운영하�
 
 
 3) ISMS 대비 보안 취약점 대비 작업
-- 
+- [ISMS 대비 작업][ISMS]
+
+[ISMS]: https://github.com/yskim1230/DBA_portfolio/blob/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/4.%20ISMS%20%EB%8C%80%EB%B9%84%20%EB%B3%B4%EC%95%88%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EB%8C%80%EB%B9%84%20%EC%9E%91%EC%97%85/ISMS%20%EB%8C%80%EB%B9%84%20%EB%B3%B4%EC%95%88%20%EC%B7%A8%EC%95%BD%EC%A0%90%20%EB%8C%80%EB%B9%84%20%EC%9E%91%EC%97%85.md
 
 4) 문자 서비스 벤더 변환 작업
 - 
