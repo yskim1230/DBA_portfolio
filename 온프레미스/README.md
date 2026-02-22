@@ -22,7 +22,7 @@ IDC 기반 운영 환경에서 MSSQL과 서비스별 MySQL MariaDB를 운영하�
 
 ## 4. 목차
 1) 인프라 요약
-- ./01_인프라요약/ (https://github.com/yskim1230/DBA_portfolio/tree/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/1.%20%EC%9D%B8%ED%94%84%EB%9D%BC%20%EA%B5%AC%EC%A1%B0)
+- [인프라요약].(https://github.com/yskim1230/DBA_portfolio/tree/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/1.%20%EC%9D%B8%ED%94%84%EB%9D%BC%20%EA%B5%AC%EC%A1%B0](https://github.com/yskim1230/DBA_portfolio/blob/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/1.%20%EC%9D%B8%ED%94%84%EB%9D%BC%20%EA%B5%AC%EC%A1%B0/Infra%20Summary.md)
 
 2) 고가용성 HA 장애 대응
 - ./02_HA_장애대응/
