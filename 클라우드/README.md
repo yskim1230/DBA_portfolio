@@ -31,20 +31,16 @@ NCP Cloud DB for MySQL 운영 전환 과정에서 수행한 업무를 절차와 
   [mor]: https://github.com/yskim1230/DBA_portfolio/blob/main/%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C/3.%20%EC%8B%A4%EC%8B%9C%EA%B0%84%20%EC%84%B8%EC%85%98%20%EB%B0%8F%20%EB%A1%B1%EB%9F%AC%EB%8B%9D%20%EC%BF%BC%EB%A6%AC%20%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81/03_realtime_session_monitoring.md
 
 
-4) 분산 DB 통합 이관 PoC Dump Restore
-- ./04_통합이관_PoC/
+4) 스키마 변경 대응
+- [04_스키마 변경][schema]
+
+  [schema]: https://github.com/yskim1230/DBA_portfolio/blob/main/%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C/4.%20%EC%8A%A4%ED%82%A4%EB%A7%88%20%EB%B3%80%EA%B2%BD%20%EB%8C%80%EC%9D%91/04_schema_change_response.md
 
 5) 관측 성능 운영 체계
-- ./05_관측/
-  - Active Session 3초 샘플링
-  - Slow Error 로그 수집 가공
-  - PMM 운영 적용
+- [슬로우 쿼리 개선 사례][slow]
 
-6) 백업 배치 운영 자동화
-- ./06_운영자동화/
+  [slow]: https://github.com/yskim1230/DBA_portfolio/blob/main/%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C/5.%20%EC%8A%AC%EB%A1%9C%EC%9A%B0%EC%BF%BC%EB%A6%AC%2C%20%EB%A1%9C%EA%B7%B8%EB%A5%BC%20%ED%86%B5%ED%95%9C%20%ED%8A%9C%EB%8B%9D%20%EC%82%AC%EB%A1%80/%EC%8A%AC%EB%A1%9C%EC%9A%B0%20%EC%BF%BC%EB%A6%AC%20%ED%8A%9C%EB%8B%9D.md
 
-7) 스키마 메타데이터 거버넌스 EXERD 변경관리
-- ./07_변경관리/
 
 ## 5. 증적 자료 규칙
 각 문서는 배경 절차 검증 결과 리스크 롤백 순서로 작성했습니다.
