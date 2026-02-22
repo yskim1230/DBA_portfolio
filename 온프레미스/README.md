@@ -54,7 +54,9 @@ IDC 기반 운영 환경에서 MSSQL과 서비스별 MySQL MariaDB를 운영하�
 [SNS]: https://github.com/yskim1230/DBA_portfolio/blob/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/5.%20%EB%AC%B8%EC%9E%90%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B2%A4%EB%8D%94%20%EB%B3%80%ED%99%98%20%EC%9E%91%EC%97%85/5.%20%EB%AC%B8%EC%9E%90%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%EB%B2%A4%EB%8D%94%20%EB%B3%80%ED%99%98%20%EC%9E%91%EC%97%85.md
 
 5) HA,DR(장애조치Failover) Runbook
-- 
+- [HA,DR Runbook][runbook]
+
+[runbook]: https://github.com/yskim1230/DBA_portfolio/blob/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/6.%20HA%2CDR(%EC%9E%A5%EC%95%A0%EC%A1%B0%EC%B9%98Failover)%20Runbook/HA%2CDR(%EC%9E%A5%EC%95%A0%EC%A1%B0%EC%B9%98Failover)%20Runbook.md
 
 
 
