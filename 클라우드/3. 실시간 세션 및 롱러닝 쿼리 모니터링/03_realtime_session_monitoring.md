@@ -25,35 +25,27 @@
 
 ### 2.1 구성 요소
 
-작업서버 VMS
+#### 작업서버 VMS
+[cron]
+- 실시간 샘플링 스크립트 main_active_3s.sh, active_3s.sh
+- 로그 수집 스크립트 db_log.sh, db_prd_log.sh, 2026_stg_log.sh
+- 로그 가공 스크립트 slow_sort.sh
 
-cron
-
-실시간 샘플링 스크립트 main_active_3s.sh, active_3s.sh
-
-로그 수집 스크립트 db_log.sh, db_prd_log.sh, 2026_stg_log.sh
-
-로그 가공 스크립트 slow_sort.sh
-
-Object Storage
-
-로컬 파일 시스템 분석 디렉토리
+[Object Storage]
+- 로컬 파일 시스템 분석 디렉토리
 
 ### 2.2 데이터 흐름
 
-실시간 Active Session
+#### 실시간 Active Session
 
 [cron 매분 트리거]
-
 -> main_active_3s.sh
 -> 3초 간격 3부터 57까지 active_3s.sh 호출
 -> 각 인스턴스 processlist 수집
 -> 로컬 디렉토리에 시간축 로그 적재
 
 [Slow Error 로그]
-
 Cloud DB Instances
-
 -> NCP CLI exportDbServerLogToObjectStorage logType SLOW, ERROR
 -> Object Storage 환경별 prefix
 -> VMS list objects, download
@@ -81,6 +73,7 @@ cron은 1분 단위이므로 스크립트 내부에서 sleep 분할로 3초 주�
 총 19회, 3초부터 57초까지 백그라운드 실행을 예약한다.
 
 예시 개념
+
 sleep 3  후 active_3s.sh 실행
 sleep 6  후 active_3s.sh 실행
 ...
