@@ -26,7 +26,10 @@ NCP Cloud DB for MySQL 운영 전환 과정에서 수행한 업무를 절차와 
   [Optimization]: https://github.com/yskim1230/DBA_portfolio/blob/main/%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C/2.%20%EC%9E%90%EC%9B%90%20%EC%B5%9C%EC%A0%81%ED%99%94%20%EC%9E%91%EC%97%85/02_resource_optimization.md
 
 3) 실시간 세션 및 롱러닝 쿼리 모니터링
-- ./03_설정표준/
+- [03_실시간 세션 및 롱러닝 쿼리 모니터링][mor]
+
+  [mor]: https://github.com/yskim1230/DBA_portfolio/blob/main/%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C/3.%20%EC%8B%A4%EC%8B%9C%EA%B0%84%20%EC%84%B8%EC%85%98%20%EB%B0%8F%20%EB%A1%B1%EB%9F%AC%EB%8B%9D%20%EC%BF%BC%EB%A6%AC%20%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81/03_realtime_session_monitoring.md
+
 
 4) 분산 DB 통합 이관 PoC Dump Restore
 - ./04_통합이관_PoC/
