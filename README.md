@@ -113,12 +113,3 @@
 1) On-Premise에서 운영 기본기(백업/복구/HA/보안/튜닝)를 확인  
 2) Cloud에서 전환 과정(통합/이관 PoC, 설정 표준화, 접근통제, 자동화)을 확인  
 3) 각 문서는 “배경 → 절차 → 검증 → 결과/리스크” 구조로 작성
-
----
-
-## Quick Links
-- On-Premise: `/on-prem/`
-- Cloud: `/cloud/`
-- Runbooks & Scripts: `/runbooks/`, `/scripts/`
-- Evidence(Log/Screenshots): `/evidence/`
-
