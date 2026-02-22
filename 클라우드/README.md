@@ -8,11 +8,7 @@ NCP Cloud DB for MySQL 운영 전환 과정에서 수행한 업무를 절차와 
 1) 대표사례 3건
 2) 관측 파이프라인 Active Session 샘플링, Slow Error 로그 수집 가공
 3) 통합 이관 PoC Dump Restore 검증 자동화
-4) VPC 접근통제와 장애 트러블슈팅
-5) 운영 설정 표준화
-
-## 3. 대표사례
-- []
+4) 운영 설정 표준화
 
 ## 4. 목차
 1) 자원 인벤토리
