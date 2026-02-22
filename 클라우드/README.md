@@ -12,16 +12,20 @@ NCP Cloud DB for MySQL 운영 전환 과정에서 수행한 업무를 절차와 
 5) 운영 설정 표준화
 
 ## 3. 대표사례
-- ./대표사례/
+- []
 
 ## 4. 목차
 1) 자원 인벤토리
-- ./01_자원인벤토리/
+- [01_자원인벤토리][inv]
+  
+  [inv]: https://github.com/yskim1230/DBA_portfolio/blob/main/%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C/1.%20%EC%9E%90%EC%9B%90%20%EA%B4%80%EB%A6%AC/01_inventory.md
 
-2) 네트워크 접근통제 VPC 기반
-- ./02_접근통제/
+2) 자원 최적화 작업 계획 및 이관 Poc
+- [02_자원 최적화 작업][Optimization]
+  
+  [Optimization]: https://github.com/yskim1230/DBA_portfolio/blob/main/%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C/2.%20%EC%9E%90%EC%9B%90%20%EC%B5%9C%EC%A0%81%ED%99%94%20%EC%9E%91%EC%97%85/02_resource_optimization.md
 
-3) DB 운영 설정 표준화 MySQL 8.4 기준
+3) 실시간 세션 및 롱러닝 쿼리 모니터링
 - ./03_설정표준/
 
 4) 분산 DB 통합 이관 PoC Dump Restore
