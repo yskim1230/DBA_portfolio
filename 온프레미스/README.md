@@ -32,23 +32,22 @@ IDC 기반 운영 환경에서 MSSQL과 서비스별 MySQL MariaDB를 운영하�
 [mssql-main]: https://github.com/yskim1230/DBA_portfolio/blob/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/1.%20%EC%9D%B8%ED%94%84%EB%9D%BC%20%EA%B5%AC%EC%A1%B0/%EC%B2%9C%EC%9E%AC%EA%B5%90%EC%9C%A1%20%EB%A9%94%EC%9D%B8%20MSSQL.md
 [mysql-shop]: https://github.com/yskim1230/DBA_portfolio/blob/main/%EC%98%A8%ED%94%84%EB%A0%88%EB%AF%B8%EC%8A%A4/1.%20%EC%9D%B8%ED%94%84%EB%9D%BC%20%EA%B5%AC%EC%A1%B0/%ED%8B%B0%EC%85%80%ED%8C%8C%20%EC%87%BC%ED%95%91%EB%AA%B0%20Mysql.md
 
-2) 고가용성 HA 장애 대응
+2) 성능 운영 최적화 튜닝 리빌드
 - ./02_HA_장애대응/
 
-3) 백업 복구 최신화
-- ./03_백업복구/
+3) 마이그레이션, 자동화, MHA 구성 및 운영
+- 
 
-4) 성능 운영 최적화 튜닝 리빌드
-- ./04_성능튜닝/
+4) ISMS 대비 보안 취약점 대비 작업
+- 
 
-5) 보안 감사 ISMS
-- ./05_보안감사/
+5) 문자 서비스 벤더 변환 작업
+- 
 
-6) 모니터링 관측
-- ./06_모니터링/
+6) HA,DR(장애조치Failover) Runbook
+- 
 
-7) 마이그레이션 업그레이드
-- ./07_마이그레이션/
+
 
 ## 5. 증적 자료 규칙
 각 문서는 배경 절차 검증 결과 리스크 롤백 순서로 작성했습니다.
