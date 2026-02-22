@@ -36,7 +36,7 @@ NCP Cloud DB for MySQL 운영 전환 과정에서 수행한 업무를 절차와 
 
   [schema]: https://github.com/yskim1230/DBA_portfolio/blob/main/%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C/4.%20%EC%8A%A4%ED%82%A4%EB%A7%88%20%EB%B3%80%EA%B2%BD%20%EB%8C%80%EC%9D%91/04_schema_change_response.md
 
-5) 관측 성능 운영 체계
+5) 슬로우 쿼리 튜닝.
 - [슬로우 쿼리 개선 사례][slow]
 
   [slow]: https://github.com/yskim1230/DBA_portfolio/blob/main/%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C/5.%20%EC%8A%AC%EB%A1%9C%EC%9A%B0%EC%BF%BC%EB%A6%AC%2C%20%EB%A1%9C%EA%B7%B8%EB%A5%BC%20%ED%86%B5%ED%95%9C%20%ED%8A%9C%EB%8B%9D%20%EC%82%AC%EB%A1%80/%EC%8A%AC%EB%A1%9C%EC%9A%B0%20%EC%BF%BC%EB%A6%AC%20%ED%8A%9C%EB%8B%9D.md
