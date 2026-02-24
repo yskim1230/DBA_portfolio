@@ -95,7 +95,9 @@ mysql --user=$v_USER1  --password=$v_PASSWORD -hdb-2nmn5-kr1.vpc-cdb.gov-ntruss.
 echo "#### `date '+%Y-%m-%d %H:%M:%S'` ############" >> ${v_act_dir}/active_session_${v_dir3}_LRM1_1.log
 mysql --user=$v_USER1  --password=$v_PASSWORD -hdb-308ufr-kr1.vpc-cdb.gov-ntruss.com -t -e "${SQL_active_session}" | tee -a ${v_act_dir}/active_session_${v_dir3}_LRM1_1.log
 mysql --user=$v_USER1  --password=$v_PASSWORD -hdb-308ufr-kr1.vpc-cdb.gov-ntruss.com -e "${SQL_actvie_full}" >> ${v_act_dir}/active_session_${v_dir3}_LRM1_1.log
-
+.
+.
+.
 ```
 
 -> 각 인스턴스 processlist 수집
@@ -115,6 +117,16 @@ Cloud DB Instances
 
 -> slow_sort.sh 병합 및 mysqldumpslow 요약
 
+```
+# 예시
+
+PATH=/home1/ncloud/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home1/ncloud/cli_linux
+cat /backup/DB_logs/$(date -d yesterday +%Y%m%d)/prd_slow_log/*mysql-slow.log.* > /backup/DB_logs/$(date -d yesterday +%Y%m%d)/prd_slow_log/slow_all.log
+
+mysqldumpslow -s c /backup/DB_logs/$(date -d yesterday +%Y%m%d)/prd_slow_log/slow_all.log > /backup/DB_logs/$(date -d yesterday +%Y%m%d)/prd_slow_log/slow_sc_$(date -d yesterday +%Y%m%d)_prd_slow_log.log
+
+
+```
 -> 일일 리포트 산출
 
 ---
