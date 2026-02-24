@@ -57,7 +57,46 @@
 
 -> main_active_3s.sh
 
+```
+# 예시
+
+(sleep 3 && /DBA/script/3sec_mon/active_3s.sh) & 
+(sleep 6 && /DBA/script/3sec_mon/active_3s.sh) & 
+(sleep 9 && /DBA/script/3sec_mon/active_3s.sh) & 
+(sleep 12 && /DBA/script/3sec_mon/active_3s.sh) &
+.
+.
+.
+(sleep 51 && /DBA/script/3sec_mon/active_3s.sh) & 
+(sleep 54 && /DBA/script/3sec_mon/active_3s.sh) & 
+(sleep 57 && /DBA/script/3sec_mon/active_3s.sh) &
+```
+
 -> 3초 간격 3부터 57까지 active_3s.sh 호출
+
+```
+# 예시
+
+### Log Dir Created
+
+v_dir1=`date +%Y%m`
+
+v_dir2=`date +%d`
+
+v_dir3=`date +%H`
+.
+.
+.
+
+echo "#### `date '+%Y-%m-%d %H:%M:%S'` ############" >> ${v_act_dir}/active_session_${v_dir3}_LRM1.log
+mysql --user=$v_USER1  --password=$v_PASSWORD -hdb-2nmn5-kr1.vpc-cdb.gov-ntruss.com -t -e "${SQL_active_session}" | tee -a ${v_act_dir}/active_session_${v_dir3}_LRM1.log
+mysql --user=$v_USER1  --password=$v_PASSWORD -hdb-2nmn5-kr1.vpc-cdb.gov-ntruss.com -e "${SQL_actvie_full}" >> ${v_act_dir}/active_session_${v_dir3}_LRM1.log
+
+echo "#### `date '+%Y-%m-%d %H:%M:%S'` ############" >> ${v_act_dir}/active_session_${v_dir3}_LRM1_1.log
+mysql --user=$v_USER1  --password=$v_PASSWORD -hdb-308ufr-kr1.vpc-cdb.gov-ntruss.com -t -e "${SQL_active_session}" | tee -a ${v_act_dir}/active_session_${v_dir3}_LRM1_1.log
+mysql --user=$v_USER1  --password=$v_PASSWORD -hdb-308ufr-kr1.vpc-cdb.gov-ntruss.com -e "${SQL_actvie_full}" >> ${v_act_dir}/active_session_${v_dir3}_LRM1_1.log
+
+```
 
 -> 각 인스턴스 processlist 수집
 
