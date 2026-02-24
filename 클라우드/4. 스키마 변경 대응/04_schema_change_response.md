@@ -73,7 +73,51 @@
 > FK가 있는 테이블은 DDL 방식에 따라 Lock/제약조건 영향이 발생할 수 있어,  
 > 사전 점검 → 단계적 적용 → 검증 절차로 수행하도록 런북화했습니다.
 
-### 3.2 EXERD/ERD 메타 반영
+### 3.2 DDL 일괄 적용 방식
+
+#### 예시에 나온 DDL 문을 DDL.SQL로 작성
+#### DDL_PRD.sh 로 실행
+
+```
+# DDL_PRD.sh 예시
+
+printf "#####PRD_LRM_01-3#####\n"
+#mysql -ulrm_infra -p'[PASSWORD]' -hdb-2nmn5-kr1.vpc-cdb.gov-ntruss.com < DDL.sql
+mysql -ulrm_chunjae -p'[PASSWORD]' -hdb-2nmn5-kr1.vpc-cdb.gov-ntruss.com < DDL.sql
+printf "#####PRD_LRM_01-4#####\n"
+#mysql -ulrm_infra -p'[PASSWORD]' -hdb-308ufr-kr1.vpc-cdb.gov-ntruss.com  < DDL.sql
+mysql -ulrm_chunjae -p'[PASSWORD]' -hdb-308ufr-kr1.vpc-cdb.gov-ntruss.com  < DDL.sql
+printf "#####PRD_LRM_02-3#####\n"
+mysql -ulrm_infra -p'[PASSWORD]' -hdb-2o1ai-kr1.vpc-cdb.gov-ntruss.com < DDL.sql
+
+printf "#####PRD_LRM_02-4#####\n"
+mysql -ulrm_infra -p'[PASSWORD]' -hdb-308ugs-kr1.vpc-cdb.gov-ntruss.com < DDL.sql
+
+printf "#####PRD_LRM_03-3#####\n"
+mysql -ulrm_infra -p'[PASSWORD]' -hdb-2nmqc-kr1.vpc-cdb.gov-ntruss.com < DDL.sql
+
+printf "#####PRD_LRM_03-4#####\n"
+mysql -ulrm_infra -p'[PASSWORD]' -hdb-308uik-kr1.vpc-cdb.gov-ntruss.com < DDL.sql
+
+printf "#####PRD_LRM_04#####\n"
+mysql -ulrm_infra -p'[PASSWORD]' -hdb-2nms0-kr1.vpc-cdb.gov-ntruss.com < DDL.sql
+
+printf "#####PRD_LRM_05#####\n"
+mysql -ulrm_infra -p'[PASSWORD]' -hdb-2nmtt-kr1.vpc-cdb.gov-ntruss.com < DDL.sql
+
+printf "#####PRD_LRM_06-1#####\n"
+mysql -ulrm_infra -p'[PASSWORD]' -hdb-2nmv1-kr1.vpc-cdb.gov-ntruss.com < DDL.sql
+....
+
+
+
+```
+
+
+
+
+
+### 3.3 EXERD/ERD 메타 반영
 
 - 변경 신청서의 “엔터티/속성/컬럼” 기준으로 ERD 도구(EXERD)에 반영
 - 변경문(ALTER TABLE)을 이력으로 보관하여:
