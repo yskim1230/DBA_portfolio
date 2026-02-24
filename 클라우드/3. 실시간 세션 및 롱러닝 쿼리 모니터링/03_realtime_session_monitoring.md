@@ -58,7 +58,7 @@
 -> main_active_3s.sh
 
 ```
-# 예시
+# main_active_3s.sh 예시
 
 (sleep 3 && /DBA/script/3sec_mon/active_3s.sh) & 
 (sleep 6 && /DBA/script/3sec_mon/active_3s.sh) & 
@@ -75,7 +75,7 @@
 -> 3초 간격 3부터 57까지 active_3s.sh 호출
 
 ```
-# 예시
+#  active_3s.sh 예시
 
 ### Log Dir Created
 
@@ -105,6 +105,7 @@ mysql --user=$v_USER1  --password=$v_PASSWORD -hdb-308ufr-kr1.vpc-cdb.gov-ntruss
 -> 로컬 디렉토리에 시간축 로그 적재
 
 [Slow Error 로그]
+
 Cloud DB Instances
 
 -> NCP CLI exportDbServerLogToObjectStorage logType SLOW, ERROR
@@ -113,12 +114,105 @@ Cloud DB Instances
 
 -> VMS list objects, download
 
+```
+# 운영 log EXPORT 예시
+#!/bin/bash
+cd /home1/ncloud/cli_linux
+#PATH
+PATH=/home1/ncloud/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home1/ncloud/cli_linux
+export PATH
+# 변수 설정
+NCLI_PATH='/home1/ncloud/cli_linux/ncloud'  # Ncloud CLI 경로
+
+# AWS 자격 증명 설정
+export AWS_ACCESS_KEY_ID='secret'
+export AWS_SECRET_ACCESS_KEY='secret'
+
+# Ncloud 자격 증명 설정
+export ACCESSKEY="secret"
+export SECRETKEY="secret"
+
+# 운영  MYSQL 서버 인스턴스(Master) 번호 배열
+INSTANCE_NUM=(
+"102829920"
+"102829906"
+"104269551"
+"104269582"
+"104269597"
+"101528625"
+"104269567"
+....
+
+
+## Object Storage
+BUCKET_NAME='lms-bak-sto-01'
+REGION_CODE='KR'
+
+## 현재 날짜를 YYYYMMDD 형식으로
+CURRENT_DATE=$(date +"%Y%m%d")
+
+# 로그 파일 설정
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOG_FILE="$SCRIPT_DIR/script_db_log/script_db_log_$(date +"%Y%m%d_%H%M%S").log"
+
+# 로그 함수 정의
+log() {
+    echo "$(date +"%Y-%m-%d %H:%M:%S") - $1" | tee -a "$LOG_FILE"
+}
+
+# 스크립트 시작을 로그에 기록
+log "스크립트 실행 시작"
+
+LOG_PATH="PRD_DB_log/$CURRENT_DATE/"
+SLOW_LOG_FILE="mysql-slow.log"
+ERROR_LOG_FILE="mysqld.err"
+
+## VMS(common vms)
+VMS_SLOW_LOG_PATH="/backup/DB_logs/$CURRENT_DATE/prd_slow_log/"
+VMS_ERROR_LOG_PATH="/backup/DB_logs/$CURRENT_DATE/prd_error_log/"
+
+# 기존 로그가 존재하는지 확인
+log "Object Storage에서 기존 로그 확인 중"
+EXISTING_LOGS=$(aws --endpoint-url=https://kr.object.gov-ncloudstorage.com s3api list-objects --bucket $BUCKET_NAME --prefix $LOG_PATH --query 'Contents[].Key' --output text)
+
+if [ -n "$EXISTING_LOGS" ]; then
+    log "기존에 존재하는 logs 파일을 삭제합니다. Object Storage://$BUCKET_NAME/$LOG_PATH"
+
+    # 모든 오브젝트 삭제
+    aws --endpoint-url=https://kr.object.gov-ncloudstorage.com s3 rm s3://$BUCKET_NAME/$LOG_PATH --recursive
+    log "기존 로그 삭제 완료"
+else
+    log "Object Storage에 로그가 없습니다. 넘어갑니다."
+fi
+
+
+# 각 인스턴스 번호에 대해 Object Storage로 로그 내보내기, 대상은 Slow 쿼리 로그
+for INSTANCE_NO in "${INSTANCE_NUM[@]}"; do
+    log "Slow 쿼리 로그 내보내기 시작 - instance: $INSTANCE_NO"
+
+    $NCLI_PATH vmysql exportDbServerLogToObjectStorage \
+        --regionCode $REGION_CODE \
+        --logType SLOW \
+        --fileName $SLOW_LOG_FILE \
+        --bucketName $BUCKET_NAME \
+        --cloudMysqlServerInstanceNo $INSTANCE_NO \
+        --folderPath $LOG_PATH
+
+    log "Slow 쿼리 로그 내보내기 완료 - instance: $INSTANCE_NO"
+    log "-------------------------------------------"
+done
+
+....
+
+```
+
+
 -> 로컬 디렉토리에 raw 로그 적재
 
 -> slow_sort.sh 병합 및 mysqldumpslow 요약
 
 ```
-# 예시
+#  slow_sort.sh 예시
 
 PATH=/home1/ncloud/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home1/ncloud/cli_linux
 cat /backup/DB_logs/$(date -d yesterday +%Y%m%d)/prd_slow_log/*mysql-slow.log.* > /backup/DB_logs/$(date -d yesterday +%Y%m%d)/prd_slow_log/slow_all.log
